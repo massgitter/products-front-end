@@ -1,0 +1,50 @@
+<h4 class="register-heading">{{registerHeading}}</h4>
+<h1 class="button-cancel"><mat-icon (click)="close()">clear</mat-icon></h1>
+<hr>
+
+<div class="modal-body">
+  <form (ngSubmit)="addProduct()" [formGroup]="productForm">
+    <div class="row">
+      <mat-form-field hidden style="margin-top: -25px">
+        <mat-label>id</mat-label>
+        <input matInput id="id" formControlName="id" required>
+      </mat-form-field>
+
+      <mat-form-field style="margin-top: -25px">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <input matInput id="color" formControlName="color">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Size</mat-label>
+        <input matInput id="size" formControlName="size">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let c of Categories" [value]="c.id">{{c.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Company</mat-label>
+        <mat-select formControlName="company" required>
+          <mat-option *ngFor="let c of Companies" [value]="c.id">{{c.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <button [disabled]="inserting" type="submit" class="btn btn-success btn-raised float-right button-submit" style="margin-bottom: 10px">
+      <span *ngIf="inserting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="inserting" class="sr-only">Loading...</span>
+      <span *ngIf="!inserting">{{submitButton}}</span>
+    </button>
+  </form>
+</div>
+
